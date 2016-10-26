@@ -1,4 +1,7 @@
 class profile::consulserver {
+  package { 'unzip':
+    ensure => present,
+  }
   class { '::consul':
     config_hash => {
       'bootstrap_expect' => 1,
@@ -10,5 +13,6 @@ class profile::consulserver {
       'server'           => true,
       'ui_dir'           => '/opt/consul/ui',
     }
+    require => Package['unzip'],
   }
 }

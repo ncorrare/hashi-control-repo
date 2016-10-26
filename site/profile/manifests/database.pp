@@ -1,4 +1,5 @@
 class profile::database {
+  include profile::base
   include '::mysql::server'
   class { '::consul':
     config_hash => {

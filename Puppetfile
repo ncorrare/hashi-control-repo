@@ -6,6 +6,7 @@ mod "puppetlabs/inifile"
 mod "puppetlabs/stdlib"
 mod "puppetlabs/concat"
 mod "puppetlabs/mysql"
+mod "puppet-staging"
 mod 'KyleAnderson/consul', '1.1.0'
 mod 'puppet/archive'
 mod 'spiette/selinux', '0.5.4'

@@ -1,8 +1,5 @@
 class profile::consulserver {
-  package { 'unzip':
-    ensure => present,
-    before => Class['consul'],
-  }
+  include profile::base
   class { '::consul':
     config_hash => {
       'bootstrap_expect' => 1,

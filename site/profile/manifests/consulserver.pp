@@ -12,7 +12,7 @@ class profile::consulserver {
       'node_name'        => $::fqdn,
       'server'           => true,
       'ui_dir'           => '/opt/consul/ui',
-    }
+    },
     require => Package['unzip'],
   }
 }

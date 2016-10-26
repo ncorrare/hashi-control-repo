@@ -5,9 +5,10 @@ forge "http://forge.puppetlabs.com"
 mod "puppetlabs/inifile"
 mod "puppetlabs/stdlib"
 mod "puppetlabs/concat"
-mod 'KyleAnderson-consul', '1.1.0'
-mod 'puppet-archive'
-mod 'spiette-selinux', '0.5.4'
+mod "puppetlabs/mysql"
+mod 'KyleAnderson/consul', '1.1.0'
+mod 'puppet/archive'
+mod 'spiette/selinux', '0.5.4'
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples

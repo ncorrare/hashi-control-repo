@@ -6,7 +6,7 @@ class profile::database {
       'datacenter' => 'east-aws',
       'log_level'  => 'INFO',
       'node_name'  => $::fqdn,
-      'retry_join' => $::consulserver,
+      'retry_join' => [$::consulserver],
     }
   }
 }

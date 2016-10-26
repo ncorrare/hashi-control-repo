@@ -1,5 +1,5 @@
 class profile::database {
-  include '::mysql::server'.
+  include '::mysql::server'
   class { '::consul':
     config_hash => {
       'data_dir'   => '/opt/consul',

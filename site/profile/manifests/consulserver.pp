@@ -1,6 +1,7 @@
 class profile::consulserver {
   package { 'unzip':
     ensure => present,
+    before => Class['consul'],
   }
   class { '::consul':
     config_hash => {
@@ -13,6 +14,5 @@ class profile::consulserver {
       'server'           => true,
       'ui_dir'           => '/opt/consul/ui',
     },
-    require => Package['unzip'],
   }
 }

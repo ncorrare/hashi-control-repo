@@ -4,7 +4,7 @@ class profile::base {
   class { 'selinux':
      mode => 'disabled',
   }
-  package { 'bind-utils':
+  package { ['bind-utils','unzip']:
     ensure => present,
   }
 

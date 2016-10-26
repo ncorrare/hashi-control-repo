@@ -4,13 +4,13 @@ class profile::database {
   class { '::consul':
     config_hash => {
       'data_dir'   => '/opt/consul',
-      'datacenter' => 'east-aws',
+      'datacenter' => 'aws',
       'log_level'  => 'INFO',
       'node_name'  => $::fqdn,
       'retry_join' => [$::consulserver],
     }
   }
-  consul::service { 'redis':
+  consul::service { 'mysql':
     #checks  => [
     #  {
     #    script   => '/usr/local/bin/check_redis.py',

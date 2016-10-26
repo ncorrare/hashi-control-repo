@@ -11,12 +11,12 @@ class profile::database {
     }
   }
   consul::service { 'mysql':
-    #checks  => [
-    #  {
-    #    script   => '/usr/local/bin/check_redis.py',
-    #    interval => '10s'
-    #  }
-    #],
+    checks  => [
+      {
+        script   => '/bin/mysql -u root -e "SELECT 1" > /dev/null',
+        interval => '10s'
+      }
+    ],
     port    => 3306,
     tags    => ['blogs']
   }

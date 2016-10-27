@@ -6,10 +6,11 @@ mod "puppetlabs/inifile"
 mod "puppetlabs/stdlib"
 mod "puppetlabs/concat"
 mod "puppetlabs/mysql"
-mod "puppet-staging"
+mod "puppet/staging"
 mod 'KyleAnderson/consul', '1.1.0'
 mod 'puppet/archive'
 mod 'spiette/selinux', '0.5.4'
+mod 'jsok/vault', '1.1.1'
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples

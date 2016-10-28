@@ -11,6 +11,7 @@ mod 'KyleAnderson/consul', '1.1.0'
 mod 'puppet/archive'
 mod 'spiette/selinux', '0.5.4'
 mod 'jsok/vault', '1.1.1'
+mod 'camptocamp-openssl', '1.8.2'
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples

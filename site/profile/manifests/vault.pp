@@ -32,7 +32,7 @@ class profile::vault {
     email        => 'ncorrare@gmail.com',
     days         => 3456,
     base_dir     => '/etc/ssl/vault',
-    owner        => 'root',
+    owner        => 'vault',
     group        => 'root',
     force        => false,
     before       => Class['vault'],

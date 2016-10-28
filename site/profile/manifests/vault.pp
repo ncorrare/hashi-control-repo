@@ -15,13 +15,13 @@ class profile::vault {
     ensure => 'present',
   }
   class { '::vault':
-    backend     => {
+    backend      => {
       'consul' => {
         'address' => "$::consulserver:8500",
         'path'    => 'vault',
       }
     },
-    listener    => {
+    listener     => {
       'tcp' => {
         'address'       => '0.0.0.0:8200',
         'tls_disable'   => 0,
@@ -29,8 +29,9 @@ class profile::vault {
         'tls_key_file'  => '/etc/ssl/vault/vault.key',
       }
     },
-    notify      => Exec['vault-init'],
-    manage_user => false,
+    notify       => Exec['vault-init'],
+    manage_user  => false,
+    manage_group => false,
   }
   #These following two execs are really a very bad idea. It would probably be way better if the vault is initialized manually and the keys are stored in Hiera eyaml or something like that.
   exec { 'vault-init':

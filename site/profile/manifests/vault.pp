@@ -28,7 +28,7 @@ class profile::vault {
     state        => 'Hertsforshire',
     locality     => 'Bishops Stortford',
     unit         => 'vault',
-    altnames     => ['localhost'],
+    altnames     => ['localhost','127.0.0.1'],
     email        => 'ncorrare@gmail.com',
     days         => 3456,
     base_dir     => '/etc/ssl/vault',

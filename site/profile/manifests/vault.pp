@@ -16,10 +16,25 @@ class profile::vault {
         'tls_key_file'  => '/etc/ssl/vault/vault.key',
         }
       },
+    notify => Exec['vault-init'],
   }
+
+  exec { 'vault-init':
+    command     => '/usr/local/bin/vault init -address=https://localhost:8200/ -tls-skip-verify > /root/vault.txt',
+    refreshonly => true,
+    notify      => Exec['vault-unseal'],
+  }
+
+  exec { 'vault-unseal':
+    command     => 'for key in $(cat /root/vault.txt | grep Unseal | awk \'{print $4}\'); do /usr/local/bin/vault unseal -address=https://localhost:8200/ -tls-skip-verify $key; done',
+    refreshonly => true,
+    suscribe    => Service['vault'],
+  }
+
   file { '/etc/ssl/vault':
     ensure => directory,
   }
+
   openssl::certificate::x509 { 'vault':
     ensure       => present,
     country      => 'GB',
@@ -35,7 +50,8 @@ class profile::vault {
     owner        => 'vault',
     group        => 'root',
     force        => false,
-  } 
+  }
+
   class { '::consul':
     config_hash => {
       'data_dir'   => '/opt/consul',
@@ -45,6 +61,7 @@ class profile::vault {
       'retry_join' => [$::consulserver],
     }
   }
+
   consul::service { 'vault':
     checks  => [
       {

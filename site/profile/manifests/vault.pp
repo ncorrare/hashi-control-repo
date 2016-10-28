@@ -18,7 +18,7 @@ class profile::vault {
       },
     notify => Exec['vault-init'],
   }
-
+  #These following two execs are really a very bad idea. It would probably be way better if the vault is initialized manually and the keys are stored in Hiera eyaml or something like that.
   exec { 'vault-init':
     command     => '/usr/local/bin/vault init -address=https://localhost:8200/ -tls-skip-verify > /root/vault.txt',
     refreshonly => true,
@@ -28,7 +28,7 @@ class profile::vault {
   exec { 'vault-unseal':
     command     => 'for key in $(cat /root/vault.txt | grep Unseal | awk \'{print $4}\'); do /usr/local/bin/vault unseal -address=https://localhost:8200/ -tls-skip-verify $key; done',
     refreshonly => true,
-    suscribe    => Service['vault'],
+    subscribe    => Service['vault'],
   }
 
   file { '/etc/ssl/vault':

@@ -10,10 +10,13 @@ class profile::vault {
     },
     listener => {
       'tcp' => {
-        'address' => '0.0.0.0:8200',
-        'tls_disable' => 1,
-      }
-    }
+        'address'       => '0.0.0.0:8200',
+        'tls_disable'   => 0,
+        'tls_cert_file' => '/etc/vault/ssl/vault.crt',
+        'tls_key_file'  => '/etc/vault/ssl/vault.key',
+        }
+      },
+    require => Openssl::Certificate::X509['vault'],
   }
   file { '/etc/vault/ssl':
     ensure => directory,

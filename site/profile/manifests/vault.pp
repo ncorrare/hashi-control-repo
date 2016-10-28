@@ -10,7 +10,7 @@ class profile::vault {
     listener => {
       'tcp' => {
         'address' => '0.0.0.0:8200',
-        'tls_disable' => 0,
+        'tls_disable' => 1,
       }
     }
   }
@@ -24,12 +24,12 @@ class profile::vault {
     }
   }
   consul::service { 'vault':
-    #checks  => [
-    #  {
-    #    script   => '/bin/mysql -u root -e "SELECT 1" > /dev/null',
-    #    interval => '10s'
-    #  }
-    #],
+    checks  => [
+      {
+        script   => 'curl http://localhost:8200 &> /dev/null',
+        interval => '10s'
+      }
+    ],
     port    => 8200,
   }
 }

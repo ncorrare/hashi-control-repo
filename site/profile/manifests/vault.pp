@@ -28,7 +28,8 @@ class profile::vault {
   exec { 'vault-unseal':
     command     => 'for key in $(cat /root/vault.txt | grep Unseal | awk \'{print $4}\'); do /usr/local/bin/vault unseal -address=https://localhost:8200/ -tls-skip-verify $key; done',
     refreshonly => true,
-    subscribe    => Service['vault'],
+    provider    => shell,
+    subscribe   => Service['vault'],
   }
 
   file { '/etc/ssl/vault':

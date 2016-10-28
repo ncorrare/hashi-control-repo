@@ -1,22 +1,36 @@
 class profile::vault {
   include profile::base
   include openssl
+  user { 'vault':
+    ensure           => 'present',
+    home             => '/home/vault',
+    password         => '!!',
+    password_max_age => '99999',
+    password_min_age => '0',
+    shell            => '/bin/bash',
+    gid              => 'vault',
+    require          => Group['vault'],
+  }
+  group { 'vault':
+    ensure => 'present',
+  }
   class { '::vault':
-    backend => {
+    backend     => {
       'consul' => {
         'address' => "$::consulserver:8500",
         'path'    => 'vault',
       }
     },
-    listener => {
+    listener    => {
       'tcp' => {
         'address'       => '0.0.0.0:8200',
         'tls_disable'   => 0,
         'tls_cert_file' => '/etc/ssl/vault/vault.crt',
         'tls_key_file'  => '/etc/ssl/vault/vault.key',
-        }
-      },
-    notify => Exec['vault-init'],
+      }
+    },
+    notify      => Exec['vault-init'],
+    manage_user => false,
   }
   #These following two execs are really a very bad idea. It would probably be way better if the vault is initialized manually and the keys are stored in Hiera eyaml or something like that.
   exec { 'vault-init':
@@ -51,6 +65,8 @@ class profile::vault {
     owner        => 'vault',
     group        => 'root',
     force        => false,
+    before       => Class['vault'],
+    require      => User['vault'],
   }
 
   class { '::consul':

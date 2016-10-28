@@ -35,7 +35,6 @@ class profile::vault {
     owner        => 'vault',
     group        => 'root',
     force        => false,
-    before       => Class['vault'],
   } 
   class { '::consul':
     config_hash => {

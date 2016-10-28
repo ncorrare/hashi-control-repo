@@ -1,5 +1,6 @@
 class profile::vault {
   include profile::base
+  include openssl
   class { '::vault':
     backend => {
       'consul' => {
@@ -14,6 +15,26 @@ class profile::vault {
       }
     }
   }
+  file { '/etc/vault/ssl':
+    ensure => directory,
+  }
+  openssl::certificate::x509 { 'vault':
+    ensure       => present,
+    country      => 'GB',
+    organization => 'example.com',
+    commonname   => $fqdn,
+    state        => 'Hertsforshire',
+    locality     => 'Bishops Stortford',
+    unit         => 'vault',
+    altnames     => ['localhost'],
+    email        => 'ncorrare@gmail.com',
+    days         => 3456,
+    base_dir     => '/etc/vault/ssl',
+    owner        => 'root',
+    group        => 'root',
+    force        => false,
+    require      => File['/etc/vault/ssl']
+  } 
   class { '::consul':
     config_hash => {
       'data_dir'   => '/opt/consul',

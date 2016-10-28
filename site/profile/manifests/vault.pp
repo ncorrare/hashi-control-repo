@@ -48,7 +48,7 @@ class profile::vault {
   consul::service { 'vault':
     checks  => [
       {
-        script   => 'curl http://localhost:8200 &> /dev/null',
+        script   => 'curl -k https://localhost:8200/v1/sys/seal-status &> /dev/null',
         interval => '10s'
       }
     ],

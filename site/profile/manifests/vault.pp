@@ -35,7 +35,6 @@ class profile::vault {
     owner        => 'root',
     group        => 'root',
     force        => false,
-    require      => File['/etc/vault/ssl'],
     before       => Class['vault'],
   } 
   class { '::consul':

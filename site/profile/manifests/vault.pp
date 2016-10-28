@@ -12,12 +12,12 @@ class profile::vault {
       'tcp' => {
         'address'       => '0.0.0.0:8200',
         'tls_disable'   => 0,
-        'tls_cert_file' => '/etc/vault/ssl/vault.crt',
-        'tls_key_file'  => '/etc/vault/ssl/vault.key',
+        'tls_cert_file' => '/etc/ssl/vault/vault.crt',
+        'tls_key_file'  => '/etc/ssl/vault/vault.key',
         }
       },
   }
-  file { '/etc/vault/ssl':
+  file { '/etc/ssl/vault':
     ensure => directory,
   }
   openssl::certificate::x509 { 'vault':
@@ -31,7 +31,7 @@ class profile::vault {
     altnames     => ['localhost'],
     email        => 'ncorrare@gmail.com',
     days         => 3456,
-    base_dir     => '/etc/vault/ssl',
+    base_dir     => '/etc/ssl/vault',
     owner        => 'root',
     group        => 'root',
     force        => false,

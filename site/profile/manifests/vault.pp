@@ -16,7 +16,6 @@ class profile::vault {
         'tls_key_file'  => '/etc/vault/ssl/vault.key',
         }
       },
-    require => Openssl::Certificate::X509['vault'],
   }
   file { '/etc/vault/ssl':
     ensure => directory,
@@ -36,7 +35,8 @@ class profile::vault {
     owner        => 'root',
     group        => 'root',
     force        => false,
-    require      => File['/etc/vault/ssl']
+    require      => File['/etc/vault/ssl'],
+    before       => Class['vault'],
   } 
   class { '::consul':
     config_hash => {

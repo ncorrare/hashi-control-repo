@@ -27,9 +27,10 @@ class profile::webserver (
     require  => Package['ruby']
   }
   
-  package { 'rake':
-    ensure => present,
-    source => 'ftp://ftp.pbone.net/mirror/ftp.centos.org/7.2.1511/os/x86_64/Packages/rubygem-rake-0.9.6-25.el7_1.noarch.rpm',
+  package { 'rubygem-rake':
+    ensure   => present,
+    provider => 'rpm',
+    source   => 'ftp://ftp.pbone.net/mirror/ftp.centos.org/7.2.1511/os/x86_64/Packages/rubygem-rake-0.9.6-25.el7_1.noarch.rpm',
   }
 
   package { 'rack':

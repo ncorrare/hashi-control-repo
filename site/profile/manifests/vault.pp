@@ -80,13 +80,4 @@ class profile::vault {
     }
   }
 
-  consul::service { 'vault':
-    checks  => [
-      {
-        script   => 'curl -k https://localhost:8200/v1/sys/seal-status &> /dev/null',
-        interval => '10s'
-      }
-    ],
-    port    => 8200,
-  }
 }

@@ -7,7 +7,7 @@ class profile::database {
      }
     },
     users => {
-      'vault@127.0.0.1' => {
+      'vault@%' => {
         ensure                   => 'present',
         max_connections_per_hour => '0',
         max_queries_per_hour     => '0',
@@ -17,12 +17,12 @@ class profile::database {
     },
   }
 
-  mysql_grant { 'vault@*/*.*':
+  mysql_grant { 'vault@%/*.*':
     ensure     => 'present',
     options    => ['GRANT'],
     privileges => ['ALL'],
     table      => '*.*',
-    user       => 'vault@*',
+    user       => 'vault@%',
   }
 
   class { '::consul':

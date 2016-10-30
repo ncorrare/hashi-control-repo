@@ -6,6 +6,8 @@ mod "puppetlabs/inifile"
 mod "puppetlabs/stdlib"
 mod "puppetlabs/concat"
 mod "puppetlabs/mysql"
+mod 'puppetlabs-apache', '1.10.0'
+mod 'stahnma-epel', '1.2.2'
 mod "puppet/staging"
 mod 'KyleAnderson/consul', '1.1.0'
 mod 'puppet/archive'

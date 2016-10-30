@@ -21,6 +21,18 @@ class profile::webserver (
     require  => Package['ruby']
   }
 
+  package { 'vault':
+    ensure   => present,
+    provider => 'gem',
+    require  => Package['ruby']
+  }
+  
+  package { 'rake':
+    ensure   => present,
+    provider => 'gem',
+    require  => Package['ruby']
+  }
+
   package { 'rack':
     ensure   => '1.6.4',
     provider => 'gem',

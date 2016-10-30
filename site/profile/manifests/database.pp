@@ -15,7 +15,6 @@ class profile::database {
     privileges => ['ALL'],
     table      => '*.*',
     user       => 'vault@%',
-    notify     => Exec['provision-password'],
   }
 
   class { '::consul':

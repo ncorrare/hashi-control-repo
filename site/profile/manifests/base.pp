@@ -4,7 +4,7 @@ class profile::base {
   class { 'selinux':
      mode => 'disabled',
   }
-  package { ['bind-utils','unzip']:
+  package { ['bind-utils','unzip','libmemcached']:
     ensure => present,
   }
 

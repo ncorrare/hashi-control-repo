@@ -6,15 +6,15 @@ class profile::database {
        'bind-address' => '0.0.0.0',
      }
   }
-  mysql_user { 'vault@%':
+  mysql_user { 'vault@*':
     ensure => 'present',
   }
-  mysql_grant { 'vault@%/*.*':
+  mysql_grant { 'vault@*/*.*':
     ensure     => 'present',
     options    => ['GRANT'],
     privileges => ['ALL'],
     table      => '*.*',
-    user       => 'vault@%',
+    user       => 'vault@*',
   }
 
   class { '::consul':

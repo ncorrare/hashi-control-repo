@@ -88,5 +88,6 @@ class profile::vault {
       }
     ],
     port    => 8200,
+    tags    => ['production'],
   }
 }

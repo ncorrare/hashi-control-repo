@@ -63,5 +63,24 @@ class profile::webserver (
   #}
   class { 'apache::mod::passenger':
   }
+  class { '::consul':
+    config_hash => {
+      'data_dir'   => '/opt/consul',
+      'datacenter' => 'aws',
+      'log_level'  => 'INFO',
+      'node_name'  => $::fqdn,
+      'retry_join' => [$::consulserver],
+    }
+  }
+  consul::service { 'web':
+    checks  => [
+      {
+        script   => "curl http://localhost > /dev/null",
+        interval => '10s'
+      }
+    ],
+    port    => 80,
+    tags    => ['blogs']
+  } 
 
 }

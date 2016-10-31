@@ -6,6 +6,7 @@ mod "puppetlabs/inifile"
 mod "puppetlabs/stdlib"
 mod "puppetlabs/concat"
 mod "puppetlabs/mysql"
+mod 'puppetlabs-vcsrepo', '1.4.0'
 mod 'puppetlabs-apache', '1.10.0'
 mod 'stahnma-epel', '1.2.2'
 mod "puppet/staging"

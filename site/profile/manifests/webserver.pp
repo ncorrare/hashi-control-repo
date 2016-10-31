@@ -45,22 +45,22 @@ class profile::webserver (
     require  => Package['ruby']
   }
 
-  #  vcsrepo { '/srv/labsignups':
-  #  ensure   => present,
-  #  provider => git,
-  #  remote   => 'origin',
-  #  owner    => 'apache',
-  #  source   => {
-  #    'origin'       => 'https://github.com/ncorrare/labsignups.git'
-  #  },
-  #  require => File['/srv'],
-  #}
+  vcsrepo { '/srv/hashidemo':
+    ensure   => present,
+    provider => git,
+    remote   => 'origin',
+    owner    => 'apache',
+    source   => {
+      'origin'       => 'https://github.com/ncorrare/hashidemo.git'
+    },
+    require => File['/srv'],
+  }
   
-  #apache::vhost { 'puppetmaster-idc.cloudapp.net':
-  #  port    => '80',
-  #  docroot => '/srv/labsignups/public',
-  #  require => Vcsrepo['/srv/labsignups'],
-  #}
+  apache::vhost { $::fqdn:
+    port    => '80',
+    docroot => '/srv/hashidemo/public',
+    require => Vcsrepo['/srv/hashidemo'],
+  }
   class { 'apache::mod::passenger':
   }
   class { '::consul':

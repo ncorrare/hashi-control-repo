@@ -21,6 +21,18 @@ class profile::webserver (
     require  => Package['ruby']
   }
 
+  package { 'json_pure':
+    ensure   => present,
+    provider => 'gem',
+    require  => Package['ruby']
+  }
+
+  package { 'json':
+    ensure   => present,
+    provider => 'gem',
+    require  => Package['ruby']
+  }
+
   package { 'vault':
     ensure   => present,
     provider => 'gem',

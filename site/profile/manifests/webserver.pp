@@ -19,6 +19,12 @@ class profile::webserver (
     provider => 'gem',
     require  => Package['ruby']
   }
+  package { 'mysql2':
+    ensure   => present,
+    provider => 'gem',
+    require  => Package['ruby']
+  }
+
 
   package { 'json_pure':
     ensure   => present,

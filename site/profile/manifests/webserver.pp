@@ -88,6 +88,7 @@ class profile::webserver (
     port        => '80',
     docroot     => '/srv/hashidemo/public',
     require     => Vcsrepo['/srv/hashidemo'],
+    branch      => 'overkill',
   }
   class { 'apache::mod::passenger':
   }

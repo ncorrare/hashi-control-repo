@@ -21,7 +21,7 @@ class profile::webserver (
   }
 
   
-  package { 'ruby-devel':
+  package { ['ruby-devel','gcc-c++','mysql-devel']:
     ensure          => present,
     install_options => '--enablerepo=rhui-REGION-rhel-server-optional',
   }

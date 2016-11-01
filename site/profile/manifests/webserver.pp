@@ -26,12 +26,6 @@ class profile::webserver (
     install_options => '--enablerepo=rhui-REGION-rhel-server-optional',
   }
 
-  package { 'mysql2':
-    ensure   => present,
-    provider => 'gem',
-    require  => Package['ruby-devel']
-  }
-
 
   package { 'json_pure':
     ensure   => present,

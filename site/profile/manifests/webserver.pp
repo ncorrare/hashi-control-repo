@@ -81,7 +81,6 @@ class profile::webserver (
     port        => '80',
     docroot     => '/srv/hashidemo/public',
     require     => Vcsrepo['/srv/hashidemo'],
-    serveralias => [ $ipaddress, '127.0.0.1' ]
   }
   class { 'apache::mod::passenger':
   }

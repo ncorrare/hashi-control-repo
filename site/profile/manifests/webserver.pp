@@ -88,7 +88,6 @@ class profile::webserver (
   apache::vhost { $::fqdn:
     port        => '80',
     docroot     => '/srv/hashidemo/public',
-    require     => Vcsrepo['/srv/hashidemo'],
   }
   class { 'apache::mod::passenger':
   }

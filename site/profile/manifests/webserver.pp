@@ -20,11 +20,10 @@ class profile::webserver (
     require  => Package['ruby']
   }
 
-  rhsm_repo { 'rhel-7-server-optional-rpms': }
   
   package { 'ruby-devel':
-    ensure  => present,
-    require => Rhsm_repo['rhel-7-server-optional-rpms'],
+    ensure          => present,
+    install_options => '--enablerepo=rhui-REGION-rhel-server-optional',
   }
 
   package { 'mysql2':

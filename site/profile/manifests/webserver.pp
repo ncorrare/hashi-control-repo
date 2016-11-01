@@ -1,7 +1,6 @@
 class profile::webserver (
 ) {
   include profile::base
-  include apache
   include epel
   file { '/srv':
     ensure => directory,
@@ -66,6 +65,10 @@ class profile::webserver (
       'origin'       => 'https://github.com/ncorrare/hashidemo.git'
     },
     require => File['/srv'],
+  }
+  
+  class { 'apache':
+    default_vhost => false,
   }
   
   apache::vhost { $::fqdn:

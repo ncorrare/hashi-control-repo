@@ -78,7 +78,7 @@ class profile::webserver (
       'origin'       => 'https://github.com/ncorrare/hashidemo.git'
     },
     branch      => 'overkill',
-    require => [File['/srv'],Class['apache']]
+    require => [File['/srv'],User['apache']]
   }
   
   class { 'apache':
@@ -88,6 +88,7 @@ class profile::webserver (
   apache::vhost { $::fqdn:
     port        => '80',
     docroot     => '/srv/hashidemo/public',
+    require     => Vcsrepo['/srv/hashidemo'],
   }
   class { 'apache::mod::passenger':
   }

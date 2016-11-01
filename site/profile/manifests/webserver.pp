@@ -78,9 +78,16 @@ class profile::webserver (
       'origin'       => 'https://github.com/ncorrare/hashidemo.git'
     },
     branch      => 'overkill',
-    require => [File['/srv'],User['apache']]
+    require  => [File['/srv'],User['apache']],
+    notify   => Exec['bundle-install'],
   }
-  
+
+  exec { 'bundle-install':
+    command     => '/usr/local/bin/bundle install',
+    cwd         => '/srv/hashidemo',
+    refreshonly => true
+  }
+
   class { 'apache':
     default_vhost => false,
   }

@@ -19,10 +19,18 @@ class profile::webserver (
     provider => 'gem',
     require  => Package['ruby']
   }
+
+  rhsm_repo { 'rhel-7-server-optional-rpms': }
+  
+  package { 'ruby-devel':
+    ensure  => present,
+    require => Rhsm_repo['rhel-7-server-optional-rpms'],
+  }
+
   package { 'mysql2':
     ensure   => present,
     provider => 'gem',
-    require  => Package['ruby']
+    require  => Package['ruby-devel']
   }
 
 

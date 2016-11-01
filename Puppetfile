@@ -8,13 +8,14 @@ mod "puppetlabs/concat"
 mod "puppetlabs/mysql"
 mod 'puppetlabs-vcsrepo', '1.4.0'
 mod 'puppetlabs-apache', '1.10.0'
-mod 'stahnma-epel', '1.2.2'
+mod 'stahnma/epel', '1.2.2'
 mod "puppet/staging"
 mod 'KyleAnderson/consul', '1.1.0'
 mod 'puppet/archive'
 mod 'spiette/selinux', '0.5.4'
 mod 'jsok/vault', '1.1.1'
-mod 'camptocamp-openssl', '1.8.2'
+mod 'camptocamp/openssl', '1.8.2'
+mod 'cristifalcas/subscription_manager', '0.2.0'
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples

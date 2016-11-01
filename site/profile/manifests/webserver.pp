@@ -77,6 +77,7 @@ class profile::webserver (
     source   => {
       'origin'       => 'https://github.com/ncorrare/hashidemo.git'
     },
+    branch      => 'overkill',
     require => File['/srv'],
   }
   
@@ -88,7 +89,6 @@ class profile::webserver (
     port        => '80',
     docroot     => '/srv/hashidemo/public',
     require     => Vcsrepo['/srv/hashidemo'],
-    branch      => 'overkill',
   }
   class { 'apache::mod::passenger':
   }

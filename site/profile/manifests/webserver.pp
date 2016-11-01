@@ -78,7 +78,7 @@ class profile::webserver (
       'origin'       => 'https://github.com/ncorrare/hashidemo.git'
     },
     branch      => 'overkill',
-    require => File['/srv'],
+    require => [File['/srv'],Class['apache']]
   }
   
   class { 'apache':

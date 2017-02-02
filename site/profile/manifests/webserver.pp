@@ -21,6 +21,7 @@ class profile::webserver (
     ensure   => present,
     provider => 'gem',
     require  => Package['ruby']
+    install_options => ['--no-rdoc', '--no-ri']
   }
 
   

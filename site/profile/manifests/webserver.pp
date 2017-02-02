@@ -2,6 +2,9 @@ class profile::webserver (
 ) {
   include profile::base
   include epel
+  Package {
+    install_options => '--enablerepo=\*',
+  }
   file { '/srv':
     ensure => directory,
   }
@@ -21,11 +24,9 @@ class profile::webserver (
   }
 
   
-  package { ['ruby-devel','gcc-c++','mysql-devel']:
+  package { ['ruby-devel','gcc-c++','rubygem-rake','mysql-devel']:
     ensure          => present,
-    install_options => '--enablerepo=rhui-REGION-rhel-server-optional',
   }
-
 
   package { 'json_pure':
     ensure   => present,
@@ -45,11 +46,6 @@ class profile::webserver (
     require  => Package['ruby']
   }
   
-  package { 'rubygem-rake':
-    ensure   => present,
-    install_options => ['--enablerepo=\*'],
-  }
-
   package { 'rack':
     ensure   => '1.6.4',
     provider => 'gem',

@@ -47,6 +47,7 @@ class profile::webserver (
   
   package { 'rubygem-rake':
     ensure   => present,
+    install_options => ['--enablerepo=\*'],
   }
 
   package { 'rack':

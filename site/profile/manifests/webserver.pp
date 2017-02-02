@@ -3,7 +3,7 @@ class profile::webserver (
   include profile::base
   include epel
   Package {
-    install_options => '--enablerepo=\*',
+    install_options => '--enablerepo=*',
   }
   file { '/srv':
     ensure => directory,

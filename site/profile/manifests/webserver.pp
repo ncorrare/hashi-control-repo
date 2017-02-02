@@ -20,7 +20,7 @@ class profile::webserver (
   package { 'bundler':
     ensure   => present,
     provider => 'gem',
-    require  => Package['ruby']
+    require  => Package['ruby'],
     install_options => ['--no-rdoc', '--no-ri']
   }
 

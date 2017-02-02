@@ -31,35 +31,35 @@ class profile::webserver (
   package { 'json_pure':
     ensure          => present,
     provider        => 'gem',
-    require         => Package['ruby']
+    require         => Package['ruby'],
     install_options => ['--no-rdoc', '--no-ri']
   }
 
   package { 'json':
     ensure   => present,
     provider => 'gem',
-    require  => Package['ruby']
+    require  => Package['ruby'],
     install_options => ['--no-rdoc', '--no-ri']
   }
 
   package { 'vault':
     ensure   => present,
     provider => 'gem',
-    require  => Package['ruby']
+    require  => Package['ruby'],
     install_options => ['--no-rdoc', '--no-ri']
   }
   
   package { 'rack':
     ensure   => '1.6.4',
     provider => 'gem',
-    require  => Package['ruby']
+    require  => Package['ruby'],
     install_options => ['--no-rdoc', '--no-ri']
   }
 
   package { 'sinatra':
     ensure   => latest,
     provider => 'gem',
-    require  => Package['ruby']
+    require  => Package['ruby'],
     install_options => ['--no-rdoc', '--no-ri']
   }
 

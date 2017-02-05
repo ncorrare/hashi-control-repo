@@ -15,7 +15,7 @@ class profile::memcache {
       'log_level'  => 'INFO',
       'bind_addr'  => $facts['networking']['interfaces']['eth1']['ip'],
       'node_name'  => $::fqdn,
-      'retry_join' => 'consul.hashicorp.demo',
+      'retry_join' => ['consul.hashicorp.demo'],
     }
   }
   consul::service { 'memcached':

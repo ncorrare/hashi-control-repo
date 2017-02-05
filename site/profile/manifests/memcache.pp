@@ -13,6 +13,7 @@ class profile::memcache {
       'data_dir'   => '/opt/consul',
       'datacenter' => 'demo',
       'log_level'  => 'INFO',
+      'bind_addr'  => $facts['networking']['interfaces']['eth1']['ip'],
       'node_name'  => $::fqdn,
       'retry_join' => 'consul.hashicorp.demo',
     }

@@ -6,7 +6,7 @@ class profile::consulserver {
       'client_addr'      => '0.0.0.0',
       'bind_addr'        => $facts['networking']['interfaces']['eth1']['ip'],
       'data_dir'         => '/opt/consul',
-      'datacenter'       => 'aws',
+      'datacenter'       => 'demo',
       'log_level'        => 'INFO',
       'node_name'        => $::fqdn,
       'server'           => true,

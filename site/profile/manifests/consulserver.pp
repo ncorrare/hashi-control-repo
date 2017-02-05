@@ -3,7 +3,7 @@ class profile::consulserver {
   class { '::consul':
     config_hash => {
       'bootstrap_expect' => 1,
-      'client_addr'      => $::networking::interfaces::eth1::ip,
+      'client_addr'      => $facts['networking']['interfaces']['eth1']['ip'],
       'data_dir'         => '/opt/consul',
       'datacenter'       => 'aws',
       'log_level'        => 'INFO',

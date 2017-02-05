@@ -11,10 +11,10 @@ class profile::memcache {
   class { '::consul':
     config_hash => {
       'data_dir'   => '/opt/consul',
-      'datacenter' => 'aws',
+      'datacenter' => 'demo',
       'log_level'  => 'INFO',
       'node_name'  => $::fqdn,
-      'retry_join' => [$::consulserver],
+      'retry_join' => 'consul.hashicorp.demo',
     }
   }
   consul::service { 'memcached':
@@ -25,7 +25,7 @@ class profile::memcache {
       }
     ],
     port    => 11211,
-    tags    => ['blogs']
+    tags    => ['caching','memcache','production']
   }
 }
 

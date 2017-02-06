@@ -17,7 +17,7 @@ class profile::vault {
   class { '::vault':
     backend      => {
       'consul' => {
-        'address' => "$::consulserver:8500",
+        'address' => "consul.hashicorp.demo:8500",
         'path'    => 'vault',
       }
     },

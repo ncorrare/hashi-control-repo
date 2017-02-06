@@ -60,7 +60,7 @@ class profile::vault {
     locality     => 'Bishops Stortford',
     unit         => 'vault',
     altnames     => [$fqdn, 'localhost'],
-    email        => 'ncorrare@gmail.com',
+    email        => 'nicolas@hashicorp.com',
     days         => 3456,
     base_dir     => '/etc/ssl/vault',
     owner        => 'vault',
@@ -73,10 +73,11 @@ class profile::vault {
   class { '::consul':
     config_hash => {
       'data_dir'   => '/opt/consul',
-      'datacenter' => 'aws',
+      'datacenter' => 'demo',
       'log_level'  => 'INFO',
+      'bind_addr'  => $facts['networking']['interfaces']['eth1']['ip'],
       'node_name'  => $::fqdn,
-      'retry_join' => [$::consulserver],
+      'retry_join' => ['consul.hashicorp.demo'],
     }
   }
 

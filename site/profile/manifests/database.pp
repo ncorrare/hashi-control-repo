@@ -13,6 +13,7 @@ class profile::database {
         max_queries_per_hour     => '0',
         max_updates_per_hour     => '0',
         max_user_connections     => '0',
+        password                 => 'gu3sss0mep4ssw0rds4r3justst4t1c',
       }
     },
   }
@@ -28,10 +29,10 @@ class profile::database {
   class { '::consul':
     config_hash => {
       'data_dir'   => '/opt/consul',
-      'datacenter' => 'aws',
+      'datacenter' => 'demo',
       'log_level'  => 'INFO',
       'node_name'  => $::fqdn,
-      'retry_join' => [$::consulserver],
+      'retry_join' => ['consul.hashicorp.demo'],
     }
   }
   consul::service { 'mysql':
@@ -42,6 +43,6 @@ class profile::database {
       }
     ],
     port    => 3306,
-    tags    => ['blogs']
+    tags    => ['production','mysql','persistence']
   }
 }

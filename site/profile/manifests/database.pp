@@ -30,6 +30,7 @@ class profile::database {
     config_hash => {
       'data_dir'   => '/opt/consul',
       'datacenter' => 'demo',
+      'bind_addr'  => $facts['networking']['interfaces']['eth1']['ip'],
       'log_level'  => 'INFO',
       'node_name'  => $::fqdn,
       'retry_join' => ['consul.hashicorp.demo'],

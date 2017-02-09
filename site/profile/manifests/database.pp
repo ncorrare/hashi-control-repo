@@ -13,7 +13,7 @@ class profile::database {
         max_queries_per_hour     => '0',
         max_updates_per_hour     => '0',
         max_user_connections     => '0',
-        password                 => 'gu3sss0mep4ssw0rds4r3justst4t1c',
+        password_hash            => '*870D82A8B35F197D64D8B4B1D5C4CF34F9EC5BFE',
       }
     },
   }

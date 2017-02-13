@@ -1,5 +1,6 @@
 forge "http://forge.puppetlabs.com"
 
+
 # Modules from the Puppet Forge
 # Versions should be updated to be the latest at the time you start
 mod "puppetlabs/inifile"
@@ -16,6 +17,9 @@ mod 'spiette/selinux', '0.5.4'
 mod 'jsok/vault', '1.1.1'
 mod 'camptocamp/openssl', '1.8.2'
 mod 'cristifalcas/subscription_manager', '0.2.0'
+mod 'camptocamp-openldap', '1.15.0'
+mod 'herculesteam-augeasproviders_core', '2.1.3'
+mod 'herculesteam-augeasproviders_shellvar', '2.2.1'
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples

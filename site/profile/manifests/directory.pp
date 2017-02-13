@@ -15,7 +15,7 @@ class { '::openldap::server':
       'objectClass eq,pres',
       'ou,cn,mail,surname,givenname eq,pres,sub',
     ],
-    ldap_interfaces => [$ipaddress],
+    ldap_interfaces => [$facts['networking']['interfaces']['eth1']['ip']],
   }
   ::openldap::server::schema { 'cosine':
     position => 1,

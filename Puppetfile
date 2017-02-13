@@ -17,9 +17,9 @@ mod 'spiette/selinux', '0.5.4'
 mod 'jsok/vault', '1.1.1'
 mod 'camptocamp/openssl', '1.8.2'
 mod 'cristifalcas/subscription_manager', '0.2.0'
-mod 'camptocamp-openldap', '1.15.0'
-mod 'herculesteam-augeasproviders_core', '2.1.3'
-mod 'herculesteam-augeasproviders_shellvar', '2.2.1'
+mod 'thrnio-ip', '1.0.0'
+mod 'bodgit-bodgitlib', '1.7.0'
+mod 'bodgit-openldap', '1.4.0'
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples

@@ -6,4 +6,6 @@ class profile::directory {
     rootdn    => 'cn=admin,dc=example,dc=com',
     rootpw    => 'hashicorp',
   }
+  class { 'openldap::client': }
+
 }

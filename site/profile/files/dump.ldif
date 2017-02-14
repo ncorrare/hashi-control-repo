@@ -1,0 +1,48 @@
+dn: dc=example,dc=com
+objectClass: top
+objectClass: dcObject
+objectclass: organization
+o: Example
+dc: example
+
+dn: cn=Manager,dc=example,dc=com
+objectClass: organizationalRole
+cn: Manager
+description: Directory Manager
+
+dn: ou=People,dc=example,dc=com
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Group,dc=example,dc=com
+objectClass: organizationalUnit
+ou: Group
+dn: cn=vault-users,ou=Group,dc=example,dc=com
+objectClass: posixGroup
+cn: Vault
+gidNumber: 1000
+memberUid: nico,brian
+
+dn: uid=nico,ou=People,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: Nico
+sn: Corrarello
+userPassword: {SSHA}xKQ0DsYNK6E2DG84c35XqWvrT6HWaiLn
+loginShell: /bin/bash
+uidNumber: 10001
+gidNumber: 1000
+homeDirectory: /home/nico
+
+dn: uid=brian,ou=People,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: Brian
+sn: Green
+userPassword: {SSHA}xKQ0DsYNK6E2DG84c35XqWvrT6HWaiLn
+loginShell: /bin/bash
+uidNumber: 10002
+gidNumber: 1000
+homeDirectory: /home/brian

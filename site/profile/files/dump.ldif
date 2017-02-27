@@ -17,6 +17,7 @@ ou: People
 dn: ou=Group,dc=example,dc=com
 objectClass: organizationalUnit
 ou: Group
+
 dn: cn=vault-users,ou=Group,dc=example,dc=com
 objectClass: posixGroup
 cn: Vault
@@ -46,3 +47,21 @@ loginShell: /bin/bash
 uidNumber: 10002
 gidNumber: 1000
 homeDirectory: /home/brian
+
+dn: cn=sales,ou=Group,dc=example,dc=com
+objectClass: posixGroup
+cn: sales
+gidNumber: 1003
+memberUid: mark
+
+dn: uid=mark,ou=People,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: Mark
+sn: Bolsoni
+userPassword: {SSHA}xKQ0DsYNK6E2DG84c35XqWvrT6HWaiLn
+loginShell: /bin/bash
+uidNumber: 10004
+gidNumber: 1003
+homeDirectory: /home/mark

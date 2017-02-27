@@ -18,12 +18,7 @@ dn: ou=Group,dc=example,dc=com
 objectClass: organizationalUnit
 ou: Group
 
-dn: cn=vault-users,ou=Group,dc=example,dc=com
-objectClass: posixGroup
-cn: Vault
-gidNumber: 1000
-memberUid: nico,brian
-
+# nico, People, example.com
 dn: uid=nico,ou=People,dc=example,dc=com
 objectClass: inetOrgPerson
 objectClass: posixAccount
@@ -35,7 +30,9 @@ loginShell: /bin/bash
 uidNumber: 10001
 gidNumber: 1000
 homeDirectory: /home/nico
+uid: nico
 
+# brian, People, example.com
 dn: uid=brian,ou=People,dc=example,dc=com
 objectClass: inetOrgPerson
 objectClass: posixAccount
@@ -47,21 +44,49 @@ loginShell: /bin/bash
 uidNumber: 10002
 gidNumber: 1000
 homeDirectory: /home/brian
+uid: brian
 
-dn: cn=sales,ou=Group,dc=example,dc=com
-objectClass: posixGroup
-cn: sales
-gidNumber: 1003
-memberUid: mark
-
+# mark, People, example.com
 dn: uid=mark,ou=People,dc=example,dc=com
 objectClass: inetOrgPerson
 objectClass: posixAccount
 objectClass: shadowAccount
-cn: Mark
-sn: Bolsoni
+cn: Brian
+sn: Green
+userPassword: {SSHA}xKQ0DsYNK6E2DG84c35XqWvrT6HWaiLn
+loginShell: /bin/bash
+uidNumber: 10003
+gidNumber: 1001
+homeDirectory: /home/mark
+uid: mark
+
+# josh, People, example.com
+dn: uid=josh,ou=People,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: Josh
+sn: Epstein
 userPassword: {SSHA}xKQ0DsYNK6E2DG84c35XqWvrT6HWaiLn
 loginShell: /bin/bash
 uidNumber: 10004
-gidNumber: 1003
-homeDirectory: /home/mark
+gidNumber: 1001
+homeDirectory: /home/josh
+uid: josh
+
+# sales, Group, example.com
+dn: cn=sales,ou=Group,dc=example,dc=com
+objectClass: posixGroup
+cn: sales
+gidNumber: 1001
+memberUid: mark
+memberUid: josh
+
+# engineering, Group, example.com
+dn: cn=engineering,ou=Group,dc=example,dc=com
+objectClass: posixGroup
+cn: engineering
+gidNumber: 1000
+memberUid: nico
+memberUid: brian
+

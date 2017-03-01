@@ -4,9 +4,7 @@ class profile::directory {
   include ::openldap::client
   if $facts['virtual'] == 'Xen' {
     $ldap_interfaces = [$facts['networking']['interfaces']['eth0']['ip']]
-  } else {
-    $ldap_interfaces = [$facts['networking']['interfaces']['eth1']['ip']]
-  }
+  } 
   class { '::openldap::server':
     root_dn         => 'cn=Manager,dc=example,dc=com',
     root_password   => '{SSHA}xKQ0DsYNK6E2DG84c35XqWvrT6HWaiLn',

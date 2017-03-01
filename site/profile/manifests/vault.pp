@@ -35,19 +35,6 @@ class profile::vault {
     manage_user  => false,
     manage_group => false,
   }
-  #These following two execs are really a very bad idea. It would probably be way better if the vault is initialized manually and the keys are stored in Hiera eyaml or something like that.
-  exec { 'vault-init':
-    command     => '/usr/local/bin/vault init -address=https://localhost:8200/ -tls-skip-verify > /root/vault.txt',
-    refreshonly => true,
-    notify      => Exec['vault-unseal'],
-  }
-
-  exec { 'vault-unseal':
-    command     => 'for key in $(cat /root/vault.txt | grep Unseal | awk \'{print $4}\'); do /usr/local/bin/vault unseal -address=https://localhost:8200/ -tls-skip-verify $key; done',
-    refreshonly => true,
-    provider    => shell,
-    subscribe   => Service['vault'],
-  }
 
   file { '/etc/ssl/vault':
     ensure => directory,
@@ -77,9 +64,9 @@ class profile::vault {
       'data_dir'   => '/opt/consul',
       'datacenter' => 'demo',
       'log_level'  => 'INFO',
-      'bind_addr'  => $facts['networking']['interfaces']['eth1']['ip'],
+      'bind_addr'  => $facts['networking']['interfaces']['eth0']['ip'],
       'node_name'  => $::fqdn,
-      'retry_join' => ['consul.hashicorp.demo'],
+      'retry_join' => [$::consulserver],
     }
   }
 

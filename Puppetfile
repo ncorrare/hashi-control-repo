@@ -14,7 +14,7 @@ mod "puppet/staging"
 mod 'KyleAnderson/consul', '1.1.0'
 mod 'puppet/archive'
 mod 'spiette/selinux', '0.5.4'
-mod 'jsok/vault', '1.1.1'
+mod 'jsok/vault', '1.1.8'
 mod 'camptocamp/openssl', '1.8.2'
 mod 'cristifalcas/subscription_manager', '0.2.0'
 mod 'thrnio-ip', '1.0.0'

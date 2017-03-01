@@ -38,7 +38,7 @@ class profile::vault {
     backend      => {
       'consul' => {
         'address' => "$::consulserver:8500",
-        'path'    => $::storepath,
+        'path'    => $::training_username,
       }
     },
     listener     => {
@@ -49,7 +49,6 @@ class profile::vault {
         'tls_key_file'  => '/etc/ssl/vault/vault.key',
       }
     },
-    notify       => Exec['vault-init'],
     manage_user  => false,
     manage_group => false,
   }

@@ -28,5 +28,15 @@ class profile::directory {
   ::openldap::server::schema { 'nis':
     position => 3,
   }
+  consul::service { 'ldap':
+    checks  => [
+      {
+        script   => 'ldapsearch -D "cn=Manager,dc=example,dc=com" -w hashicorp -p 389 -h localhost -b "cn=Manager,dc=example,dc=com"',
+        interval => '10s'
+      }
+    ],
+    port    => 8200,
+    tags    => ['production'],
+  }
 
 }

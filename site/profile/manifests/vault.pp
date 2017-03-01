@@ -1,6 +1,17 @@
 class profile::vault {
   include profile::base
   include openssl
+  include ssh
+  user { "$::training_username":
+    home             => "/home/$::training_username",
+    password         => "$::namespace",
+    password_max_age => '99999',
+    password_min_age => '0',
+    shell            => '/bin/bash',
+    gid              => 'vault',
+    require          => Group['vault'],
+  }
+
   user { 'vault':
     ensure           => 'present',
     home             => '/home/vault',
@@ -11,9 +22,16 @@ class profile::vault {
     gid              => 'vault',
     require          => Group['vault'],
   }
+
   group { 'vault':
     ensure => 'present',
   }
+
+  file_line { 'sudo_rule':
+    path => '/etc/sudoers',
+    line => '%vault ALL=(ALL) NOPASSWD: ALL',
+  }
+
   class { '::vault':
     install_method => 'archive',
     download_url   => $::vaulturl,

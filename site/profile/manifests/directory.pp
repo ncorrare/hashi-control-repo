@@ -1,9 +1,13 @@
 class profile::directory {
   include profile::base
-include ::openldap
-include ::openldap::client
-
-class { '::openldap::server':
+  include ::openldap
+  include ::openldap::client
+  if $facts['virtual'] == 'Xen' {
+    $ldap_interfaces = [$facts['networking']['interfaces']['eth0']['ip']]
+  } else {
+    $ldap_interfaces = [$facts['networking']['interfaces']['eth1']['ip']]
+  }
+  class { '::openldap::server':
     root_dn         => 'cn=Manager,dc=example,dc=com',
     root_password   => '{SSHA}xKQ0DsYNK6E2DG84c35XqWvrT6HWaiLn',
     suffix          => 'dc=example,dc=com',
@@ -15,7 +19,7 @@ class { '::openldap::server':
       'objectClass eq,pres',
       'ou,cn,mail,surname,givenname eq,pres,sub',
     ],
-    ldap_interfaces => [$facts['networking']['interfaces']['eth1']['ip']],
+    ldap_interfaces => $ldap_interfaces,
   }
   ::openldap::server::schema { 'cosine':
     position => 1,

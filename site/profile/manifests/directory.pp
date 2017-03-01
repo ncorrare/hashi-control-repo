@@ -28,6 +28,16 @@ class profile::directory {
   ::openldap::server::schema { 'nis':
     position => 3,
   }
+  class { '::consul':
+    config_hash => {
+      'data_dir'   => '/opt/consul',
+      'datacenter' => 'enablement',
+      'log_level'  => 'INFO',
+      'bind_addr'  => $facts['networking']['interfaces']['eth0']['ip'],
+      'node_name'  => $::fqdn,
+      'retry_join' => [$::consulserver],
+    }
+  }
   consul::service { 'ldap':
     checks  => [
       {

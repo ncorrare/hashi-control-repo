@@ -79,7 +79,7 @@ class profile::vault {
   class { '::consul':
     config_hash => {
       'data_dir'   => '/opt/consul',
-      'datacenter' => 'demo',
+      'datacenter' => 'enablement',
       'log_level'  => 'INFO',
       'bind_addr'  => $facts['networking']['interfaces']['eth0']['ip'],
       'node_name'  => $::fqdn,

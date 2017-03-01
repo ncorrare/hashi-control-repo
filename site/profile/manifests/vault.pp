@@ -4,7 +4,7 @@ class profile::vault {
   include ssh
   user { "$::training_username":
     home             => "/home/$::training_username",
-    password         => "$::namespace",
+    password         => '$1$k1F0mu0m$sR7WXY6mMU/SEc2iJVNWN.',
     password_max_age => '99999',
     password_min_age => '0',
     shell            => '/bin/bash',

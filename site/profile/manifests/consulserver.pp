@@ -4,7 +4,7 @@ class profile::consulserver {
     config_hash => {
       'bootstrap_expect' => 1,
       'client_addr'      => '0.0.0.0',
-      'bind_addr'        => $facts['networking']['interfaces']['eth1']['ip'],
+      'bind_addr'        => $facts['networking']['interfaces']['eth0']['ip'],
       'data_dir'         => '/opt/consul',
       'datacenter'       => 'demo',
       'log_level'        => 'INFO',

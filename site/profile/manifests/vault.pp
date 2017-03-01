@@ -15,10 +15,12 @@ class profile::vault {
     ensure => 'present',
   }
   class { '::vault':
+    install_method => 'archive',
+    download_url   => $::vaulturl,
     backend      => {
       'consul' => {
-        'address' => "consul.hashicorp.demo:8500",
-        'path'    => 'vault',
+        'address' => "$::consulserver:8500",
+        'path'    => $::storepath,
       }
     },
     listener     => {

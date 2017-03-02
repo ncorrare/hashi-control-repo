@@ -56,8 +56,11 @@ class profile::vault {
         'tls_key_file'  => '/etc/ssl/vault/vault.key',
       }
     },
-    redirect_addr => "http://$::fqdn:8200/",
-    cluster_name  => $::training_username,
+    extra_config => {
+      'redirect_addr' => "http://$::fqdn:8200/",
+      'cluster_name'  => $::training_username,
+      'ui'            => 'true',
+    },
     manage_user   => false,
     manage_group  => false,
   }

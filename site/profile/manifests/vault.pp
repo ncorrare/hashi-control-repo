@@ -56,8 +56,10 @@ class profile::vault {
         'tls_key_file'  => '/etc/ssl/vault/vault.key',
       }
     },
-    manage_user  => false,
-    manage_group => false,
+    redirect_addr => "http://$::fqdn:8200/",
+    cluster_name  => $::training_username,
+    manage_user   => false,
+    manage_group  => false,
   }
 
   file { '/etc/ssl/vault':

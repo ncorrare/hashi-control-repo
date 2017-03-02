@@ -5,12 +5,19 @@ class profile::vault {
   user { "$::training_username":
     home             => "/home/$::training_username",
     password         => '$1$k1F0mu0m$sR7WXY6mMU/SEc2iJVNWN.',
+    managehome       => true,
     password_max_age => '99999',
     password_min_age => '0',
     shell            => '/bin/bash',
     gid              => 'vault',
     require          => Group['vault'],
   }
+
+  file { "/home/$::training_username/.bash_profile":
+    source  => 'puppet:///modules/profile/bash_profile',
+    require => User[$::training_username],
+  }
+  
 
   user { 'vault':
     ensure           => 'present',

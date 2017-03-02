@@ -29,11 +29,11 @@ class profile::database {
   class { '::consul':
     config_hash => {
       'data_dir'   => '/opt/consul',
-      'datacenter' => 'demo',
-      'bind_addr'  => $facts['networking']['interfaces']['eth1']['ip'],
+      'datacenter' => 'enablement',
+      'bind_addr'  => $facts['networking']['interfaces']['eth0']['ip'],
       'log_level'  => 'INFO',
       'node_name'  => $::fqdn,
-      'retry_join' => ['consul.hashicorp.demo'],
+      'retry_join' => [$::consulserver],
     }
   }
   consul::service { 'mysql':

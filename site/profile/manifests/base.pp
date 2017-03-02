@@ -8,13 +8,4 @@ class profile::base {
     ensure => present,
   }
 
-  service { 'NetworkManager':
-    ensure => 'stopped',
-    enable => 'false',
-  }
-
-  service { 'network':
-    ensure => 'running',
-    enable => 'true',
-  }
 }

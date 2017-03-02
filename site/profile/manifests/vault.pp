@@ -46,7 +46,7 @@ class profile::vault {
       'consul' => {
         'address'       => "$::consulserver:8500",
         'path'          => $::training_username,
-        'redirect_addr' => "http://$::fqdn:8200/",
+        'redirect_addr' => "https://$::fqdn:8200/",
       }
     },
     listener     => {

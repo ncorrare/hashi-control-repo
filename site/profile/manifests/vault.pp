@@ -44,8 +44,9 @@ class profile::vault {
     download_url   => $::vaulturl,
     backend      => {
       'consul' => {
-        'address' => "$::consulserver:8500",
-        'path'    => $::training_username,
+        'address'       => "$::consulserver:8500",
+        'path'          => $::training_username,
+        'redirect_addr' => "http://$::fqdn:8200/",
       }
     },
     listener     => {
@@ -57,9 +58,7 @@ class profile::vault {
       }
     },
     extra_config => {
-      'redirect_addr' => "http://$::fqdn:8200/",
       'cluster_name'  => $::training_username,
-      'ui'            => 'true',
     },
     manage_user   => false,
     manage_group  => false,

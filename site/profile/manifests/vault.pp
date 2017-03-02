@@ -14,9 +14,10 @@ class profile::vault {
   }
 
   package { 'easy-rsa':
-    ensure => installed,
-    source => 'ftp://195.220.108.108/linux/epel/7/x86_64/e/easy-rsa-2.2.2-1.el7.noarch.rpm',
-    before => File['/bin/generatecert.sh'],
+    ensure   => installed,
+    source   => 'ftp://195.220.108.108/linux/epel/7/x86_64/e/easy-rsa-2.2.2-1.el7.noarch.rpm',
+    provider => 'rpm',
+    before   => File['/bin/generatecert.sh'],
   }
 
   file { '/bin/generatecert.sh':

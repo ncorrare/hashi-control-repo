@@ -71,8 +71,8 @@ class profile::vault {
       'tcp' => {
         'address'       => '0.0.0.0:8200',
         'tls_disable'   => 0,
-        'tls_cert_file' => "/etc/vault/$::fqdn.crt",
-        'tls_key_file'  => "/etc/vault/$::fqdn.key",
+        'tls_cert_file' => "/etc/ssl/vault/$::fqdn.crt",
+        'tls_key_file'  => "/etc/ssl/vault/$::fqdn.key",
       }
     },
     extra_config => {

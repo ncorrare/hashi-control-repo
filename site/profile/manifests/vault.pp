@@ -27,8 +27,9 @@ class profile::vault {
   }
   
   exec { '/bin/generatecert.sh':
-    creates => '/etc/vault/ca.crt',
-    before  => Class['vault'],
+    creates  => '/etc/vault/ca.crt',
+    require  => Class['vault'],
+    notify   => Service['vault'],
   }
   
   file { "/home/$::training_username/.bash_profile":

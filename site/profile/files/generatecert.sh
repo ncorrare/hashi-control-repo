@@ -6,7 +6,6 @@ source ./vars
 /usr/share/easy-rsa/2.0/build-ca --batch
 /usr/share/easy-rsa/2.0/build-dh --batch
 /usr/share/easy-rsa/2.0/build-key-server --batch $(hostname)
-mkdir -p /etc/vault
 cp /usr/share/easy-rsa/2.0/keys/ca.crt /etc/vault
 cp /usr/share/easy-rsa/2.0/keys/$(hostname).* /etc/vault
 chown -R vault:vault /etc/vault

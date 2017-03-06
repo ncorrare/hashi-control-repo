@@ -77,6 +77,7 @@ class profile::vault {
     },
     extra_config => {
       'cluster_name'  => $::training_username,
+      'ui'  => true,
     },
     manage_user   => false,
     manage_group  => false,

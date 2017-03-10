@@ -14,7 +14,33 @@ class profile::vault {
   group { 'vault':
     ensure => 'present',
   }
+
+  package { 'easy-rsa':
+    ensure   => installed,
+    source   => 'ftp://195.220.108.108/linux/epel/7/x86_64/e/easy-rsa-2.2.2-1.el7.noarch.rpm',
+    provider => 'rpm',
+    before   => File['/bin/generatecert.sh'],
+  }
+
+  file { '/bin/generatecert.sh':
+    source  => 'puppet:///modules/profile/generatecert.sh',
+    require => User['vault'],
+    mode    => '0755',
+  }
+  
+  exec { '/bin/generatecert.sh':
+    creates  => '/etc/ssl/vault/ca.crt',
+    require  => File['/etc/ssl/vault'],
+    notify   => Service['vault'],
+  }
+  
+  file { "/root/.bash_profile":
+    source  => 'puppet:///modules/profile/bash_profile',
+  }
+
   class { '::vault':
+    install_method => 'archive',
+    download_url   => '/tmp/vault.zip',
     backend      => {
       'consul' => {
         'address' => "consul.hashicorp.demo:8500",
@@ -28,6 +54,10 @@ class profile::vault {
         'tls_cert_file' => '/etc/ssl/vault/vault.crt',
         'tls_key_file'  => '/etc/ssl/vault/vault.key',
       }
+    },
+    extra_config => {
+      'cluster_name'  => 'demo',
+      'ui'  => true,
     },
     notify       => Exec['vault-init'],
     manage_user  => false,
@@ -49,25 +79,6 @@ class profile::vault {
 
   file { '/etc/ssl/vault':
     ensure => directory,
-  }
-
-  openssl::certificate::x509 { 'vault':
-    ensure       => present,
-    country      => 'GB',
-    organization => 'example.com',
-    commonname   => $fqdn,
-    state        => 'Hertsforshire',
-    locality     => 'Bishops Stortford',
-    unit         => 'vault',
-    altnames     => [$fqdn, 'localhost'],
-    email        => 'nicolas@hashicorp.com',
-    days         => 3456,
-    base_dir     => '/etc/ssl/vault',
-    owner        => 'vault',
-    group        => 'root',
-    force        => false,
-    before       => Class['vault'],
-    require      => User['vault'],
   }
 
   class { '::consul':

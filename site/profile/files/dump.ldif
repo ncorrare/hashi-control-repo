@@ -18,6 +18,45 @@ dn: ou=Group,dc=example,dc=com
 objectClass: organizationalUnit
 ou: Group
 
+
+# sales, Group, example.com
+dn: cn=sales,ou=Group,dc=example,dc=com
+objectClass: posixGroup
+cn: sales
+gidNumber: 1001
+memberUid: mark
+memberUid: josh
+
+# engineering, Group, example.com
+dn: cn=engineering,ou=Group,dc=example,dc=com
+objectClass: posixGroup
+cn: engineering
+gidNumber: 1000
+memberUid: nico
+memberUid: brian
+
+# admin, Group, example.com
+dn: cn=admin,ou=Group,dc=example,dc=com
+objectClass: posixGroup
+cn: admin
+gidNumber: 1002
+memberUid: admin
+
+# admin, People, example.com
+dn: uid=admin,ou=People,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: Admin
+sn: McAdminface
+userPassword: {SSHA}xKQ0DsYNK6E2DG84c35XqWvrT6HWaiLn
+loginShell: /bin/bash
+uidNumber: 10010
+gidNumber: 1002
+homeDirectory: /home/admin
+uid: admin
+
+
 # nico, People, example.com
 dn: uid=nico,ou=People,dc=example,dc=com
 objectClass: inetOrgPerson
@@ -51,8 +90,8 @@ dn: uid=mark,ou=People,dc=example,dc=com
 objectClass: inetOrgPerson
 objectClass: posixAccount
 objectClass: shadowAccount
-cn: Brian
-sn: Green
+cn: Mark
+sn: Bolsoni
 userPassword: {SSHA}xKQ0DsYNK6E2DG84c35XqWvrT6HWaiLn
 loginShell: /bin/bash
 uidNumber: 10003
@@ -73,20 +112,4 @@ uidNumber: 10004
 gidNumber: 1001
 homeDirectory: /home/josh
 uid: josh
-
-# sales, Group, example.com
-dn: cn=sales,ou=Group,dc=example,dc=com
-objectClass: posixGroup
-cn: sales
-gidNumber: 1001
-memberUid: mark
-memberUid: josh
-
-# engineering, Group, example.com
-dn: cn=engineering,ou=Group,dc=example,dc=com
-objectClass: posixGroup
-cn: engineering
-gidNumber: 1000
-memberUid: nico
-memberUid: brian
 

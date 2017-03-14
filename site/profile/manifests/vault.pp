@@ -2,16 +2,6 @@ class profile::vault {
   include profile::base
   include openssl
   include ssh
-  user { "$::training_username":
-    home             => "/home/$::training_username",
-    password         => '$1$k1F0mu0m$sR7WXY6mMU/SEc2iJVNWN.',
-    managehome       => true,
-    password_max_age => '99999',
-    password_min_age => '0',
-    shell            => '/bin/bash',
-    gid              => 'vault',
-    require          => Group['vault'],
-  }
 
   package { 'easy-rsa':
     ensure   => installed,
@@ -27,11 +17,11 @@ class profile::vault {
   }
   
   exec { '/bin/generatecert.sh':
-    creates  => '/etc/vault/ca.crt',
+    creates  => '/etc/ssl/vault/ca.crt',
     notify   => Service['vault'],
   }
   
-  file { "/home/$::training_username/.bash_profile":
+  file { "/home/hashicorp/.bash_profile":
     source  => 'puppet:///modules/profile/bash_profile',
     require => User[$::training_username],
   }
@@ -61,10 +51,8 @@ class profile::vault {
     install_method => 'archive',
     download_url   => $::vaulturl,
     backend      => {
-      'consul' => {
-        'address'       => "$::consulserver:8500",
-        'path'          => $::training_username,
-        'redirect_addr' => "https://$::fqdn:8200",
+      'file' => {
+        'path'          => '/secrets',
       }
     },
     listener     => {
@@ -75,10 +63,6 @@ class profile::vault {
         'tls_key_file'  => "/etc/ssl/vault/$::fqdn.key",
       }
     },
-    extra_config => {
-      'cluster_name'  => $::training_username,
-      'ui'  => true,
-    },
     manage_user   => false,
     manage_group  => false,
   }
@@ -87,25 +71,4 @@ class profile::vault {
     ensure => directory,
   }
 
-  class { '::consul':
-    config_hash => {
-      'data_dir'   => '/opt/consul',
-      'datacenter' => 'enablement',
-      'log_level'  => 'INFO',
-      'bind_addr'  => $facts['networking']['interfaces']['eth0']['ip'],
-      'node_name'  => $::fqdn,
-      'retry_join' => [$::consulserver],
-    }
-  }
-
-  consul::service { 'vault':
-    checks  => [
-      {
-        script   => 'curl -k https://localhost:8200/v1/sys/seal-status &> /dev/null',
-        interval => '10s'
-      }
-    ],
-    port    => 8200,
-    tags    => ['production'],
-  }
 }

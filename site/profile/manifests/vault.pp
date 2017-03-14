@@ -23,7 +23,6 @@ class profile::vault {
   
   file { "/home/hashicorp/.bash_profile":
     source  => 'puppet:///modules/profile/bash_profile',
-    require => User[$::training_username],
   }
   
 

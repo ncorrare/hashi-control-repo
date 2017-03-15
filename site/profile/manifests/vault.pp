@@ -48,7 +48,7 @@ class profile::vault {
 
   class { '::vault':
     install_method => 'archive',
-    download_url   => $::vaulturl,
+    download_url   => '/tmp/vault.zip',
     backend      => {
       'file' => {
         'path'          => '/secrets',
@@ -64,6 +64,9 @@ class profile::vault {
     },
     manage_user   => false,
     manage_group  => false,
+    extra_config => {
+      'ui'  => true,
+    },
   }
 
   file { '/etc/ssl/vault':

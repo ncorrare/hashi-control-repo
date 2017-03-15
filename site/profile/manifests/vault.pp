@@ -21,7 +21,7 @@ class profile::vault {
     notify   => Service['vault'],
   }
   
-  file { "/home/ec2-user/.bash_profile":
+  file { "/home/hashicorp/.bash_profile":
     source  => 'puppet:///modules/profile/bash_profile',
   }
   

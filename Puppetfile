@@ -20,6 +20,7 @@ mod 'cristifalcas/subscription_manager', '0.2.0'
 mod 'thrnio-ip', '1.0.0'
 mod 'bodgit-bodgitlib', '1.7.0'
 mod 'bodgit-openldap', '1.4.0'
+mod 'dudemcbacon-nomad', '0.0.3'
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples

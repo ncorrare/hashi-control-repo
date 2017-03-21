@@ -8,7 +8,7 @@ class profile::nomadserver {
     'data_dir'   => '/opt/nomad',
     'server'     => {
       'enabled'          => true,
-      'bootstrap_expect' => 3,
+      'bootstrap_expect' => 1,
       }
     }
   }

@@ -10,7 +10,7 @@ class profile::nomadagent {
       'client'     => {
         'enabled'    => true,
         'servers'    => [
-          "nomadserver.corrarello.com:4647"
+          "nomadserver.corrarello.net:4647"
         ]
       }
     },

@@ -1,4 +1,4 @@
-class profile::nomad {
+class profile::nomadserver {
   class { '::nomad':
     config_hash => {
     'region'     => 'uk',

@@ -1,6 +1,6 @@
 class profile::nomad {
   class { '::nomad':
-    config_hash = {
+    config_hash => {
     'region'     => 'uk',
     'datacenter' => 'poundhost',
     'log_level'  => 'INFO',

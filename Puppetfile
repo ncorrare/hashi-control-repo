@@ -28,6 +28,6 @@ mod 'saz-ssh', '3.0.1'
 #  :git    => 'https://github.com/puppetlabs/puppetlabs-apache',
 #  :commit => '83401079053dca11d61945bd9beef9ecf7576cbf'
 
-#mod 'apache',
-#  :git    => 'https://github.com/puppetlabs/puppetlabs-apache',
-#  :branch => 'docs_experiment'
+mod 'oraclexe',
+  :git => 'https://github.com/ncorrare/ncorrare-oraclexe',
+  :tag => '0.2.0'

@@ -30,4 +30,4 @@ mod 'saz-ssh', '3.0.1'
 
 mod 'oraclexe',
   :git => 'https://github.com/ncorrare/ncorrare-oraclexe',
-  :tag => '0.2.3'
+  :branch => 'master'

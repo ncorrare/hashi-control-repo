@@ -21,6 +21,7 @@ mod 'thrnio-ip', '1.0.0'
 mod 'bodgit-bodgitlib', '1.7.0'
 mod 'bodgit-openldap', '1.4.0'
 mod 'saz-ssh', '3.0.1'
+mod 'thias-sysctl'
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
